@@ -14,9 +14,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.com.acme.condominio.Condominio;
-import lombok.Builder;
+import br.com.acme.unidade.Unidade;
+//import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -26,7 +28,8 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Builder
+@NoArgsConstructor
+//@Builder
 @EqualsAndHashCode
 @Table(name = "tb_avisos")
 public class Aviso implements Serializable {
@@ -35,10 +38,14 @@ public class Aviso implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	private String descricaoAviso;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_condominio")
 	private Condominio condominoAvisos;
+
+	@ManyToOne
+	@JoinColumn(name = "id_unidade")
+	private Unidade unidadeAviso;
 }
